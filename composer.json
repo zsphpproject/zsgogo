@@ -1,6 +1,6 @@
 {
-    "name": "topthink/think",
-    "description": "the new thinkphp framework",
+    "name": "zsgogo/tp",
+    "description": "thinkphp framework",
     "type": "project",
     "keywords": [
         "framework",
