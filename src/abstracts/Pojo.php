@@ -12,6 +12,9 @@ use think\Request;
 use ZsGoGo\constant\ErrorNums;
 
 
+/**
+ *
+ */
 abstract class Pojo implements Arrayable {
 
 
