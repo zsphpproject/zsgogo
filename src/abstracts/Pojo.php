@@ -10,6 +10,7 @@ use ReflectionClass;
 use ReflectionProperty;
 use think\Request;
 use ZsGoGo\constant\ErrorNums;
+use ZsGoGo\exception\PojoException;
 
 
 /**
@@ -102,11 +103,11 @@ abstract class Pojo implements Arrayable {
                 $propertyName = $property->getName();
                 $setDataFuncName = 'set' . ucfirst($propertyName);
                 if (!$this->reflectionClass->hasMethod($setDataFuncName)) {
-                    throw new Exception('method ' . $this->reflectionClass->getName() . '::' . $setDataFuncName . ' not exists!', ErrorNums::METHOD_NOT_EXISTS);
+                    throw new PojoException('method ' . $this->reflectionClass->getName() . '::' . $setDataFuncName . ' not exists!', ErrorNums::METHOD_NOT_EXISTS);
                 }
                 $reflectionMethod = $this->reflectionClass->getMethod($setDataFuncName);
                 if (!$reflectionMethod->isPublic()) {
-                    throw new Exception('method ' . $this->reflectionClass->getName() . '::' . $setDataFuncName . ' is not public!', ErrorNums::METHOD_NOT_PUBLIC);
+                    throw new PojoException('method ' . $this->reflectionClass->getName() . '::' . $setDataFuncName . ' is not public!', ErrorNums::METHOD_NOT_PUBLIC);
                 }
                 $reflectionMethod->invokeArgs($this, [$propertyValue]);
             }
